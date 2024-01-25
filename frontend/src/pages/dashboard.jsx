@@ -10,12 +10,13 @@ const Dashboard = () => {
     })
     return (
         <div>
-            <Navbar />
-            <Certificate
+            <Navbar />    
+            <Certificate  
         name="John Doe"
         course="React Development"
         date="January 25, 2024"
-      />            
+      />           
+      <h2>Dashboard</h2> 
         </div>
     )
 }
