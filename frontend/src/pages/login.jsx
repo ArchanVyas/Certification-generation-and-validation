@@ -1,6 +1,6 @@
 import hello from '../assets/login.jpg'
 import logo from '../assets/logo.png'
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
-        password: ''      
+        password: ''
     });
 
 
@@ -24,26 +24,26 @@ const Login = () => {
     const handleLoginClick = async (e) => {
         e.preventDefault();
 
-        try {                   
+        try {
             const response = await fetch('http://localhost:7000/user/login/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
-                  },
+                },
                 body: JSON.stringify(formData)
             });
 
             const data = await response.json();
             console.log(data);
-            localStorage.removeItem("token");
-            localStorage.setItem("token",data.data.token)
-            localStorage.setItem("id",data.data.id)
-            if (data.data.token) {
+            if (data.data.code === 200) {
                 console.log('Successfully logged in');
+                localStorage.removeItem("token");
+                localStorage.setItem("token", data.data.token)
+                localStorage.setItem("id", data.data.id)
                 window.location.replace('/dashboard')
             }
-            else{
+            else {
                 alert(data.message)
             }
         } catch (err) {
@@ -51,12 +51,12 @@ const Login = () => {
         }
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         const token = localStorage.getItem("token")
-        if(token){
+        if (token) {
             window.location.replace('/dashboard')
         }
-    },[])
+    }, [])
     return (
         <>    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
             <link rel="icon" href={logo.src} type="image/icon type" />
@@ -64,8 +64,8 @@ const Login = () => {
 
             <div className="lg:grid lg:grid-cols-2 md:grid md:grid-cols-2 gap-4 bg-[#000010] h-[100vh]">
                 <div>
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-          className="mt-16 img-fluid" alt="Sample image" />                    </div>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                        className="mt-16 img-fluid" alt="Sample image" />                    </div>
                 <div className="p-8 px-16 mt-[5%] bg-[#000010]">
                     <h1 className="lg:text-[65px] text-[35px] font-bold text-[white]">Login</h1><br />
                     {/* <h3 className="lg:text-[35px] text-[20px] text-[white] font-semibold">Login</h3><br></br> */}
@@ -73,17 +73,17 @@ const Login = () => {
                         <div className="mb-5">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
                             <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                             value={formData.email}
-                             onChange={handleInputChange}
-                            placeholder="Enter your email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                placeholder="Enter your email"
 
                                 required />
                         </div>
                         <div className="mb-5">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Password</label>
                             <input type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                             value={formData.password}
-                             onChange={handleInputChange}
+                                value={formData.password}
+                                onChange={handleInputChange}
                                 placeholder="Enter your password"
                                 required />
                         </div>
