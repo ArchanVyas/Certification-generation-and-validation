@@ -1,0 +1,11 @@
+# dotenv environment variables file
+.env
+
+# Dependency directories
+node_modules/
+
+# Logs
+logs
+
+#Public Files 
+public/uploads/*
