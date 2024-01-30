@@ -36,7 +36,7 @@ const Login = () => {
 
             const data = await response.json();
             console.log(data);
-            if (data.data.code === 200) {
+            if (data.data.token) {
                 console.log('Successfully logged in');
                 localStorage.removeItem("token");
                 localStorage.setItem("token", data.data.token)

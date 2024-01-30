@@ -7,6 +7,7 @@ const router = express.Router();
 const { databaseConfig } = require("./src/configs");
 
 const app = express();
+
 app.use(cors());
 app.use(express.static("public"));
 app.use(bodyParser.json());

@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar"
 import Certificate from "../components/Certi"
+
 import { useEffect } from "react"
 const Dashboard = () => {
     const token = localStorage.getItem("token")
@@ -11,6 +12,7 @@ const Dashboard = () => {
     return (
         <div>
             <Navbar />    
+            
             <Certificate  
         name="John Doe"
         course="React Development"
