@@ -4,8 +4,8 @@ const {createTemplate,updateTemplate,getTemplate} = require("../controller/templ
 const isAuthenticated = require('../middleware/authentication.middelware')
 
 module.exports = () => {
-  router.get('/get-template',isAuthenticated,getTemplate)
-  router.post("/create-template", isAuthenticated, createTemplate);
-  router.patch("/update-template/:id",isAuthenticated, updateTemplate);
+  router.get('/get-template',getTemplate)
+  router.post("/create-template", createTemplate);
+  router.patch("/update-template/:id", updateTemplate);
   return router;
 };

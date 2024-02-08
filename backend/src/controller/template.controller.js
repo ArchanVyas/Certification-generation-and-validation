@@ -1,21 +1,20 @@
 const Template = require('../models/template.model')
 const { success, failure } = require("../utils/response.utils");
 const { httpsStatusCodes, serverResponseMessage } = require("../constants/");
+const cheerio = require("cheerio")
 
 exports.createTemplate = async(req,res)=>{
     try {
         const { user } = req;
-        if (user.user_type === 2) {
-          return failure(
-            res,
-            httpsStatusCodes.ACCESS_DENIED,
-            serverResponseMessage.ACCESS_DENIED
-          );
-        }
+        // const {template_values} = req.body
+        // const plainText = cheerio.load(template_values).text()
         const data = {
           ...req.body,
+          // template_values:plainText
         };
+        
         const response = await Template.create(data);
+    
         return success(
           res,
           httpsStatusCodes.CREATED,
@@ -23,6 +22,7 @@ exports.createTemplate = async(req,res)=>{
           response
         );
       } catch (error) {
+        console.log(error)
         return failure(
           res,
           httpsStatusCodes.INTERNAL_SERVER_ERROR,

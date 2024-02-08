@@ -1,29 +1,39 @@
 import React, { useState } from 'react';
 
 const TemplateForm = () => {
-  const [inputValue, setInputValue] = useState('');
+  const [data, setData] = useState('');
+  const [additionalInfo, setAdditionalInfo] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const token = localStorage.getItem("token")
     // Assuming your API endpoint is 'https://example.com/api'
-    const apiUrl = 'https://example.com/api';
-    console.log(inputValue)
+    const apiUrl = 'http://localhost:7000/template/create-template';
+    console.log(data)
+    console.log(additionalInfo)
+    const data_Send=JSON.stringify({
+      template_values: data,
+      template_name: additionalInfo,
+      template_code:123
+    })
+    console.log(data_Send)
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `${token}`
         },
-        body: JSON.stringify({ data: inputValue }),
+        body: data_Send,
       });
-
-      if (response.ok) {
+      const sample = await response.json()
+      console.log(sample)
+      if (sample.message==="template created successfully") {
         // Handle success
         console.log('API call successful');
       } else {
         // Handle error
-        console.error('API call failed');
+        console.error(sample.message);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -39,17 +49,33 @@ const TemplateForm = () => {
         <input
           type="text"
           id="dataInput"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={data}
+          onChange={(e) => setData(e.target.value)}
           className="border p-2 rounded-md focus:outline-none focus:border-blue-500"
         />
+
+        <label htmlFor="additionalInfoInput" className="text-lg font-semibold">
+          Additional Information:
+        </label>
+        <input
+          type="text"
+          id="additionalInfoInput"
+          value={additionalInfo}
+          onChange={(e) => setAdditionalInfo(e.target.value)}
+          className="border p-2 rounded-md focus:outline-none focus:border-blue-500"
+        />
+
         <button
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
         >
           Submit
         </button>
-      </form>
+      </form><br></br>
+      <a href="/dashboard"> <button
+                className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
+
+      >Dashboard</button></a>
     </div>
   );
 };
