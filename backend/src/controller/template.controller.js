@@ -8,8 +8,10 @@ exports.createTemplate = async(req,res)=>{
         const { user } = req;
         // const {template_values} = req.body
         // const plainText = cheerio.load(template_values).text()
+        const template_values = `<div>${req.body.template_values}</div>`
         const data = {
           ...req.body,
+          template_values
           // template_values:plainText
         };
         
