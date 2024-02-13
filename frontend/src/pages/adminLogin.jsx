@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const Login = () => {
+const AdminLogin = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -42,7 +42,7 @@ const Login = () => {
                 localStorage.removeItem("token");
                 localStorage.setItem("token", data.data.token)
                 localStorage.setItem("id", data.data.id)
-                window.location.replace('/dashboard')
+                window.location.replace('/templateform')
             }
             else {
                 alert(data.message)
@@ -68,7 +68,7 @@ const Login = () => {
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                         className="mt-16 img-fluid" alt="Sample image" />                    </div>
                 <div className="p-8 px-16 mt-[5%] bg-[#000010]">      
-                    <h1 className="lg:text-[65px] text-[35px] font-bold text-[white]">Login</h1><br />
+                    <h1 className="lg:text-[65px] text-[35px] font-bold text-[white]">Admin Login</h1><br />
                     {/* <h3 className="lg:text-[35px] text-[20px] text-[white] font-semibold">Login</h3><br></br> */}
                     <form className="max-w-sm">
                         <div className="mb-5">
@@ -90,9 +90,12 @@ const Login = () => {
                         </div>
 
                         <button type="button" onClick={handleLoginClick} className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
-                        <br></br>                        
-                        <h1 className='text-[white]'>New user? <Link to="/signup" className="font-bold underline">Signup</Link></h1>
-                        <h1 className='text-[white]'>Admin? <Link to="/admin/login" className="font-bold underline">Login</Link></h1>
+                        <br></br>
+                        
+
+
+                        <h1 className='text-[white]'>New user? <Link to="/admin/signup" className="font-bold underline">Signup</Link></h1>
+                        <h1 className='text-[white]'>User? <Link to="/login" className="font-bold underline">Login</Link></h1>
                     </form>
                 </div>
             </div>
@@ -102,4 +105,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default AdminLogin;
