@@ -26,7 +26,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:7000/user/login/', {
+            const response = await fetch('http://localhost:7000/user/login/user', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -54,8 +54,14 @@ const Login = () => {
 
     useEffect(() => {
         const token = localStorage.getItem("token")
+        const user = localStorage.getItem("user")
+
         if (token) {
             window.location.replace('/dashboard')
+        }
+        if(user && user === "admin"){
+            window.location.replace('/admin/login')
+    
         }
     }, [])
     return (

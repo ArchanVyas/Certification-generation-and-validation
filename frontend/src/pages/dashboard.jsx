@@ -25,6 +25,16 @@ const Dashboard = () => {
 
     useEffect(() => {
         fetchTemplates();
+        const token = localStorage.getItem("token")
+        const user = localStorage.getItem("user")
+
+        if (!token) {
+            window.location.replace('/login')
+        }
+        if(user && user === "admin"){
+            window.location.replace('/admin/login')
+    
+        }
     }, []);
 
     // Function to handle template selection

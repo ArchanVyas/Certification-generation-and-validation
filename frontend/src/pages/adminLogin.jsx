@@ -26,7 +26,7 @@ const AdminLogin = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:7000/user/login/', {
+            const response = await fetch('http://localhost:7000/user/login/admin', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -42,7 +42,8 @@ const AdminLogin = () => {
                 localStorage.removeItem("token");
                 localStorage.setItem("token", data.data.token)
                 localStorage.setItem("id", data.data.id)
-                window.location.replace('/templateform')
+                localStorage.setItem("user", "admin")
+                window.location.replace('/admin/dashboard')
             }
             else {
                 alert(data.message)
@@ -53,10 +54,11 @@ const AdminLogin = () => {
     };
 
     useEffect(() => {
+        const user = localStorage.getItem("user")
         const token = localStorage.getItem("token")
         if (token) {
-            window.location.replace('/dashboard')
-        }
+            window.location.replace('/admin/dashboard')
+        }        
     }, [])
     return (
         <>    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />

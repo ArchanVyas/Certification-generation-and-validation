@@ -18,11 +18,26 @@ const isAuthenticated = async (req, res, next) => {
     const jwtToken = token.split(" ")[1];
 
     try {
-      const tokenExpiry = jwt.verify(jwtToken, jwtConfig.jwtSecret);
+      const decodedToken = jwt.verify(jwtToken, jwtConfig.jwtSecret);
+      // Extract the user ID from the decoded token payload
+      const userId = decodedToken.id;
 
-      // If verification is successful, proceed
-      const userDetails = await User.findOne({ id: tokenExpiry._id });
+      // Find the user based on the extracted user ID
+      const userDetails = await User.findOne({ _id:userId });
+
+      // Check if the user exists
+      if (!userDetails) {
+        return failure(
+          res,
+          httpsStatusCodes.UNAUTHORIZED,
+          serverResponseMessage.INVALID_TOKEN
+        );
+      }
+
+      // Attach the user details to the request object
       req.user = userDetails;
+
+      // Call the next middleware
       next();
     } catch (err) {
       // Handle different JWT verification errors
@@ -49,6 +64,7 @@ const isAuthenticated = async (req, res, next) => {
     );
   }
 };
+
 
 
 module.exports = isAuthenticated;

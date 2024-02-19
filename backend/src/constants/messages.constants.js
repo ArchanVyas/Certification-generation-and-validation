@@ -4,6 +4,13 @@ const serverResponseMessage = {
     USER_CREATED_SUCCESSFULLY: "User created successfully",
     INVALID_CREDENTIALS: "Invalid credentials",
     LOGIN_SUCCESSFULL: "Login successfull",
+    USER_NOT_FOUND:"user not found",
+    PROFILE_FETCHED_SUUCESSFULLY:"profile fetched successfully",
+    PROFILE_UPDATED_SUCCESSFULLY:"profile updated successfully",
+    COURSE_CREATED_SUCCESSFULLY:"course created sucessfully",
+    COURSES_FETCHED_SUCCESSFULLY:"course fetched successfully",
+    COURSE_NOT_FOUND:"course not found",
+    COURSE_UPDATED_SUCCESSFULLY:"course updated successfully",
 
     /* Certificate */
     CERTIFICATE_CREATED_SUCCESSFULLY: "Certificate created successfully",
