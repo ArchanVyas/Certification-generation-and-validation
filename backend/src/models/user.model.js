@@ -15,6 +15,18 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  qualifications:{
+    type: String,
+    required: true,
+  },
+  skills:{
+    type:String,
+    required: true,
+  },
+  university:{
+    type:String,
+    required:true,
+  },
   user_type:{
     type:Number,
     required:true

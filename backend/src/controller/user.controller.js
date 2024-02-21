@@ -9,6 +9,10 @@ exports.signUp = async (req, res) => {
   try {
     let { user } = req.params;
     let { password } = req.body;
+    let { university } = req.body;
+    let { qualifications } = req.body;
+    let { skills } = req.body;
+
     let encryptPassword = await bcrypt.hash(password, 10);
     let userType = 2;
     if (user === "admin") {
@@ -18,6 +22,9 @@ exports.signUp = async (req, res) => {
       ...req.body,
       password: encryptPassword,
       user_type: userType,
+      university:university,
+      qualifications:qualifications,
+      skills:skills,
     };
     const email = await User.findOne({ email: req.body.email });
     if (email) {

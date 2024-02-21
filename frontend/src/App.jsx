@@ -8,7 +8,8 @@ import MyCerti from './pages/Mycerti';
 import AdminSignup from './pages/adminSignup';
 import AdminLogin from './pages/adminLogin';
 import AdminDashboard from './pages/adminDashboard'
-
+import Profile from "../src/pages/Profile"
+import EditProfile from './pages/EditProfile';
 function App() {
   return (
     <div>
@@ -23,6 +24,8 @@ function App() {
           <Route path='/admin/dashboard' element={<AdminDashboard />} />
           <Route path='admin/templateform' element={<TemplateForm />} />
           <Route path='/mycerti' element={<MyCerti />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path="/edit-profile" element={<EditProfile/>} />
           <Route path="/logout" component={<Logout/>} />
         </Routes>
       </Router>

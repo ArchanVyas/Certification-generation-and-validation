@@ -16,6 +16,7 @@ exports.createCertificate = async (req, res) => {
       ...req.body,
       user_id:user._id,
       user_name:user.user_name,
+      course_name:req.body.course,
       createdAt:new Date()
     };
     const response = await Certificate.create(data);
