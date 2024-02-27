@@ -10,7 +10,7 @@ const items = [
     { key: '1', icon: <HomeOutlined />, label: 'Home', link:'/dashboard' },
     { key: '2', icon: <FileSearchOutlined />, label: 'Request', link:'/request' },
     { key: '3', icon: <ProfileOutlined />, label: 'Profile', link:'/profile' },
-    { key: '4', icon: <LogoutOutlined />, label: 'Logout', link:'/' },
+    { key: '4', icon: <LogoutOutlined />, label: 'Logout', link:'/logout' },
 ];
 
 const Sidebar = () => {

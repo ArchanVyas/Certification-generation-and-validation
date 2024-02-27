@@ -98,10 +98,10 @@ const PendingRequest = () => {
                             <td className="py-3 text-center">{item.template_Id}</td>
                             <td className="py-3 text-center">{item.course_name}</td>
                             <td className="py-3 text-center">
-                                <button className="mr-2 px-3 py-2 rounded-md bg-green-500 text-white" onClick={approveCourse(item._id)}>
+                                <button className="mr-2 px-3 py-2 rounded-md bg-green-500 text-white" onClick={()=>approveCourse(item._id)}>
                                     <IoCheckmark className="text-lg"/>
                                 </button>
-                                <button className="px-3 py-2 rounded-md bg-red-500 text-white" onClick={denyCourse(item._id)}>
+                                <button className="px-3 py-2 rounded-md bg-red-500 text-white" onClick={()=>denyCourse(item._id)}>
                                     <RxCross2 className="text-lg" />
                                 </button>
                             </td>
