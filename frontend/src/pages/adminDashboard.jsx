@@ -1,24 +1,27 @@
 import AddData from "../components/addData"
+import AdminNavbar from "../components/AdminNavbar"
+import PendingRequest from "../components/PendingRequest"
 import { useEffect } from "react"
 
 const AdminDashboard = () => {
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         const token = localStorage.getItem("token")
         const user = localStorage.getItem("user")
 
         if (!token) {
             window.location.replace('/login')
         }
-        if(!user){
+        if (!user) {
             window.location.replace('/login')
         }
-    },[])
+    }, [])
 
-    return(
-       <>
-        <AddData />
-       </>
+    return (
+        <>
+            <AdminNavbar />
+            <PendingRequest />
+        </>
     )
 }
 

@@ -13,8 +13,10 @@ exports.createCourse=async(req,res)=>{
         );
       }
       const data = {
-        ...req.body,
         userId:user.id,
+        user_name:req.body.user_name,
+        template_Id:req.body.template_id,
+        course_name:req.body.course
       };
       const response = await Courses.create(data);
       return success(

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const courseSchema = new Schema({
     template_Id: {
-      type: String,
+      type: Number,
       // required: true,
     },
     status: {
@@ -16,6 +16,12 @@ const courseSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User" // reference to the User model
     },
+    user_name:{
+      type:String
+    },
+    course_name:{
+      type:String
+    }
   });
 
 module.exports = mongoose.model("Courses", courseSchema);

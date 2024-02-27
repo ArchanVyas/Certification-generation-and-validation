@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import AdminNavbar from './AdminNavbar';
 const AddData = () => {
   const [companyName, setCompanyName] = useState('');
   const [providerName, setProviderName] = useState('');
@@ -39,6 +39,8 @@ const AddData = () => {
   };
 
   return (
+    <>
+    <AdminNavbar />
     <div className="container mx-auto mt-8 p-4 bg-gray-100 rounded-md max-w-md">
       <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         <label htmlFor="dataInput" className="text-lg font-semibold">
@@ -71,6 +73,7 @@ const AddData = () => {
         </button>
       </form><br></br>     
     </div>
+    </>
   );
 };
 

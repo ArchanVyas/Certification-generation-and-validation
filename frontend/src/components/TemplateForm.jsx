@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import AdminNavbar from './AdminNavbar';
 const TemplateForm = () => {
   const [data, setData] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
@@ -54,6 +54,8 @@ const TemplateForm = () => {
   },[])
 
   return (
+    <>
+    <AdminNavbar />
     <div className="container mx-auto mt-8 p-4 bg-gray-100 rounded-md max-w-md">
       <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         <label htmlFor="dataInput" className="text-lg font-semibold">
@@ -90,6 +92,7 @@ const TemplateForm = () => {
 
       >Dashboard</button></a>
     </div>
+    </>
   );
 };
 

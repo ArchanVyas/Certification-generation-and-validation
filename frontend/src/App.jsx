@@ -10,6 +10,8 @@ import AdminLogin from './pages/adminLogin';
 import AdminDashboard from './pages/adminDashboard'
 import Profile from "../src/pages/Profile"
 import EditProfile from './pages/EditProfile';
+import AddData from './components/addData';
+import UserDashboardTable from './components/UserDashboardTable';
 function App() {
   return (
     <div>
@@ -21,8 +23,10 @@ function App() {
           <Route path='/signup' element={<Signup />} />
           <Route path='/admin/signup' element={<AdminSignup />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/request' element={<UserDashboardTable />} />
           <Route path='/admin/dashboard' element={<AdminDashboard />} />
           <Route path='admin/templateform' element={<TemplateForm />} />
+          <Route path='admin/course' element={<AddData />} />
           <Route path='/mycerti' element={<MyCerti />} />
           <Route path='/profile' element={<Profile />} />
           <Route path="/edit-profile" element={<EditProfile/>} />
