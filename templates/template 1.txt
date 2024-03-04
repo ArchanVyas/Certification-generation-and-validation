@@ -46,7 +46,7 @@
     <body>
         <div class="container">
             <div class="logo">
-                An Organization
+                ${course_name}
             </div>
 
             <div class="marquee">
@@ -58,12 +58,15 @@
             </div>
 
             <div class="person">
-                Joe Nathan
+                ${username}
             </div>
 
             <div class="reason">
                 For deftly defying the laws of gravity<br/>
                 and flying high
+            </div>
+            <div>
+                Date: ${date}
             </div>
         </div>
     </body>
