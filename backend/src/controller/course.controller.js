@@ -62,43 +62,58 @@ exports.getCourses = async (req, res) => {
     }
 };
 
-exports.updateCourse =async(req,res)=>{
+exports.updateCourse = async (req, res) => {
     try {
-        const {user} = req;
-        const {_id,status} = req.body;
-        const data = {
-            status,
-            ...req.body
-        }
-        if(user.user_type === 2){
+        const { user } = req;
+        const { _id, status, certificate } = req.body;
+        
+        if (user.user_type === 2) {
             return failure(
                 res,
                 httpsStatusCodes.ACCESS_DENIED,
                 serverResponseMessage.ACCESS_DENIED
-              );
+            );
         }
+
+        let data = {
+            status,
+            ...req.body
+        };
+
+        // Check if status is 1, and include certificate_course only in that case
+        if (status !== undefined && status === '1') {
+            data = {
+                ...data,
+                certificate // Add certificate_course only if status is 1
+            };
+        } else {
+            // Remove certificate_course if status is not 1
+            delete data.certificate;
+        }
+
         const updatedCourse = await Courses.findOneAndUpdate(
             { _id },
             { $set: data },
             { new: true }
-          );
+        );
 
-          if(!updatedCourse){
+        if (!updatedCourse) {
             return failure(
                 res,
                 httpsStatusCodes.NOT_FOUND,
                 serverResponseMessage.COURSE_NOT_FOUND
-              );
-          }
+            );
+        }
 
-          return success(
+        return success(
             res,
             httpsStatusCodes.SUCCESS,
             serverResponseMessage.COURSE_UPDATED_SUCCESSFULLY,
             updatedCourse
-          );
+        );
 
     } catch (error) {
+        console.log(error)
         return failure(
             res,
             httpsStatusCodes.INTERNAL_SERVER_ERROR,
@@ -106,3 +121,4 @@ exports.updateCourse =async(req,res)=>{
         );
     }
 }
+

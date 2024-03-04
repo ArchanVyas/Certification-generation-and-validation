@@ -21,6 +21,10 @@ const courseSchema = new Schema({
     },
     course_name:{
       type:String
+    },
+    certificate:{
+      type:String,
+      default:""
     }
   });
 
