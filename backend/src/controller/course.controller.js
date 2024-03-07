@@ -1,4 +1,5 @@
 const Courses = require("../models/course.model")
+const Template = require("../models/template.model")
 const { success, failure } = require("../utils/response.utils");
 const { httpsStatusCodes, serverResponseMessage } = require("../constants/");
 
@@ -65,7 +66,7 @@ exports.getCourses = async (req, res) => {
 exports.updateCourse = async (req, res) => {
     try {
         const { user } = req;
-        const { _id, status, certificate } = req.body;
+        const { _id, status } = req.body;
         
         if (user.user_type === 2) {
             return failure(
@@ -74,6 +75,12 @@ exports.updateCourse = async (req, res) => {
                 serverResponseMessage.ACCESS_DENIED
             );
         }
+
+        const course = await Courses.findOne({ _id });
+        console.log(course.template_Id)
+        const template = await Template.findOne({ template_code: course.template_Id });
+        console.log(template)
+        const certificate = template.template_values
 
         let data = {
             status,
