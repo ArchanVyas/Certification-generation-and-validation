@@ -6,19 +6,24 @@ const { httpsStatusCodes, serverResponseMessage } = require("../constants/");
 exports.createCourse=async(req,res)=>{
     try {
     const { user } = req;
-    if (user.user_type === 1) {
-        return failure(
-          res,
-          httpsStatusCodes.ACCESS_DENIED,
-          serverResponseMessage.ACCESS_DENIED
-        );
-      }
+    const {user_name,template_Id,course} = req.body
+      const template = await Template.findOne({ template_code: template_Id });
+      let certificate = template.template_values;
+      certificate = certificate.toString().replace('Joe Nathan', user_name);
+      certificate = certificate.toString().replace('course', course);
       const data = {
         userId:user.id,
         user_name:req.body.user_name,
         template_Id:req.body.template_id,
         course_name:req.body.course
       };
+      if (user.user_name === user_name) {
+        data.status = true;
+        data.certificate = certificate;
+    } else {
+        data.status = false;
+        data.certificate="";
+    }
       const response = await Courses.create(data);
       return success(
         res,
