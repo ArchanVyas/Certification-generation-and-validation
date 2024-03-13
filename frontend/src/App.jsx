@@ -12,6 +12,7 @@ import Profile from "../src/pages/Profile"
 import EditProfile from './pages/EditProfile';
 import AddData from './components/addData';
 import UserDashboardTable from './components/UserDashboardTable';
+import Validate from './components/Validate';
 function App() {
   return (
     <div>
@@ -23,6 +24,7 @@ function App() {
           <Route path='logout/' element={<Logout />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/admin/signup' element={<AdminSignup />} />
+          <Route path='/admin/validate' element={<Validate />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/request' element={<UserDashboardTable />} />
           <Route path='/admin/dashboard' element={<AdminDashboard />} />

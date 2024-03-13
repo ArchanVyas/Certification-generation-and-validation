@@ -1,18 +1,16 @@
 <html>
     <head>
         <style type='text/css'>
-            body, html {
+            body,html {
                 margin: 0;
                 padding: 0;
             }
             body {
                 color: black;
-                display: table;
-                font-family: Georgia, serif;
                 font-size: 24px;
                 text-align: center;
             }
-            .container {
+            .containers {
                 border: 20px solid tan;
                 width: 750px;
                 height: 563px;
@@ -32,7 +30,6 @@
                 margin: 20px;
             }
             .person {
-                border-bottom: 2px solid black;
                 font-size: 32px;
                 font-style: italic;
                 margin: 20px auto;
@@ -44,10 +41,8 @@
         </style>
     </head>
     <body>
-        <div class="container">
-            <div class="logo">
-                ${course_name}
-            </div>
+        <div class="containers">
+ 
 
             <div class="marquee">
                 Certificate of Completion
@@ -58,15 +53,15 @@
             </div>
 
             <div class="person">
-                ${username}
+                John
             </div>
 
             <div class="reason">
-                For deftly defying the laws of gravity<br/>
-                and flying high
+               For the completion of the course named<br/>
+                 courseName<br/><br /> On
             </div>
             <div>
-                Date: ${date}
+                Date
             </div>
         </div>
     </body>

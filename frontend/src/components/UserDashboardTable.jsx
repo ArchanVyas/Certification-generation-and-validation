@@ -23,6 +23,8 @@ const customStyles = {
 const UserDashboardTable = () => {
     const [data, setData] = useState([]);
     const [selectedCertificate, setSelectedCertificate] = useState(null); // State to manage selected certificate
+    const [selectedName, setSelectedName] = useState(null); // State to manage selected certificate
+    const [selectedCourse, setSelectedCourse] = useState(null); // State to manage selected certificate
     const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal open/close
 
     const fetchData = async () => {
@@ -55,8 +57,10 @@ const UserDashboardTable = () => {
     }, []);
 
     // Function to handle opening modal and set selected certificate
-    const openModal = (certificateHtml) => {
+    const openModal = (certificateHtml,item) => {
         setSelectedCertificate(certificateHtml);
+        setSelectedName(item?.user_name)
+        setSelectedCourse(item?.course_name)
         setIsModalOpen(true);
     };
 
@@ -69,9 +73,10 @@ const UserDashboardTable = () => {
     // Function to download certificate as PDF
     const downloadCertificateAsPDF = () => {
         const element = document.getElementById("certificateContent");
-
-        html2pdf()
+        const filename = selectedName+"_"+selectedCourse;
+        html2pdf()            
             .from(element)
+            .set({filename:filename})
             .save();
     };
 
@@ -92,18 +97,18 @@ const UserDashboardTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data?.map((item) => (
+                        {data?.map((item,index) => (
                             <tr key={item.id} className="border-b border-gray-200">
-                                <td className="py-3 text-center">{item.template_Id}</td>
+                                <td className="py-3 text-center">{index+1}</td>
                                 <td className="py-3 text-center">{item.user_name}</td>
                                 <td className="py-3 text-center">{item.template_Id}</td>
                                 <td className="py-3 text-center">{item.course_name}</td>
                                 <td className="py-3 text-center">
-                                    {item.status === "0" ? "Pending" : item.status === "1" ? "Accepted" : "Rejected"}
+                                    {item.status  ? "Accepted" :  "Rejected"}
                                 </td>
                                 <td>
                                     {/* Button to open modal */}
-                                    <button onClick={() => openModal(item.certificate)} disabled={item.status !== "1"}>Open Certi</button>
+                                    <button onClick={() => openModal(item.certificate, item)} disabled={!item.status}>Open Certi</button>
                                 </td>
                             </tr>
                         ))}

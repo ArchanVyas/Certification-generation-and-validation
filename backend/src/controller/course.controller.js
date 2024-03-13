@@ -1,23 +1,31 @@
 const Courses = require("../models/course.model")
 const Template = require("../models/template.model")
+const User = require("../models/user.model");
 const { success, failure } = require("../utils/response.utils");
 const { httpsStatusCodes, serverResponseMessage } = require("../constants/");
 
 exports.createCourse=async(req,res)=>{
     try {
-    const { user } = req;
-    const {user_name,template_Id,course} = req.body
-      const template = await Template.findOne({ template_code: template_Id });
+    const { user } = req; 
+    const {user_name,template_id,course} = req.body
+    const userName = await User.findOne({_id:user.id})
+      const template = await Template.findOne({ template_code: template_id });
       let certificate = template.template_values;
-      certificate = certificate.toString().replace('Joe Nathan', user_name);
-      certificate = certificate.toString().replace('course', course);
+      certificate = certificate.toString().replace('John', user_name);
+      certificate = certificate.toString().replace('courseName', course);
+      const currentDate = new Date().toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+    certificate = certificate.replace('Date', currentDate);
       const data = {
         userId:user.id,
         user_name:req.body.user_name,
         template_Id:req.body.template_id,
         course_name:req.body.course
       };
-      if (user.user_name === user_name) {
+      if (userName.user_name.trim() === user_name.trim()) {
         data.status = true;
         data.certificate = certificate;
     } else {
@@ -33,6 +41,7 @@ exports.createCourse=async(req,res)=>{
       );
 
     } catch (error) {
+        console.log(error)
         return failure(
             res,
             httpsStatusCodes.INTERNAL_SERVER_ERROR,

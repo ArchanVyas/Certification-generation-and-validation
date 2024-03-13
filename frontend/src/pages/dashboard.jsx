@@ -4,6 +4,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import Navbar from "../components/Navbar"
 import UserDashboardTable from "../components/UserDashboardTable";
+import Modal from 'react-modal';
 
 const Dashboard = () => {
     const { id } = useParams();
@@ -13,6 +14,7 @@ const Dashboard = () => {
         user_name: "",
         course: ""
     });
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     // Function to fetch templates from the API
     const fetchTemplates = async () => {
@@ -51,9 +53,9 @@ const Dashboard = () => {
     // Function to handle template selection
     const handleTemplateSelect = (template) => {
         setSelectedTemplate(template);
+        setIsModalOpen(true);
     };
 
-    // Function to handle form input changes
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -62,10 +64,9 @@ const Dashboard = () => {
         }));
     };
 
-    // Function to handle form submission
     const handleSubmit = async () => {
         // Send the data and template ID to the backend for processing
-       console.log({"user_name":formData.user_name,"course":formData.course,"template_id":selectedTemplate})
+        console.log({"user_name":formData.user_name,"course":formData.course,"template_id":selectedTemplate})
         const token = localStorage.getItem("token");
         const API_URL = `http://localhost:7000/course/createCourse`;
         try {
@@ -85,34 +86,13 @@ const Dashboard = () => {
         
             if (response.ok) {
                 console.log("Data sent successfully for template ID:", selectedTemplate.id);
+                setIsModalOpen(false); // Close the modal after successful submission
             } else {
                 console.error("Failed to send data");
             }
         } catch (error) {
             console.error("Error sending data:", error);
         }
-    };
-
-    // Function to handle logout
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("id");
-        window.location.replace('/');
-    };
-
-    // Function to download the certificate as PDF
-    const downloadCertificate = () => {
-        const element = document.getElementById('certificate');
-
-        html2canvas(element)
-            .then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
-                const pdf = new jsPDF();
-                const imgWidth = 208;
-                const imgHeight = canvas.height * imgWidth / canvas.width;
-                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-                pdf.save("certificate.pdf");
-            });
     };
 
     return (
@@ -129,19 +109,22 @@ const Dashboard = () => {
                         </div>
                     ))}
                 </div>
-                {selectedTemplate && (
-                    <div className="ml-32" style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-                        <div>
-                            <h3>Fill in the details:</h3>
-                            <input type="text" name="user_name" placeholder="Name" value={formData.user_name} onChange={handleInputChange} style={{ marginBottom: '10px', padding: '8px', borderRadius: '5px', border: '1px solid #ddd' }} />
-                            <h3>Course Name:</h3>
-                            <input type="text" name="course" placeholder="Course Name" value={formData.course} onChange={handleInputChange} style={{ marginBottom: '10px', padding: '8px', borderRadius: '5px', border: '1px solid #ddd' }} />
-                            <br />
-                            <br />
-                            <button onClick={handleSubmit} style={{ backgroundColor: '#1976D2', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer', boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)' }}>Submit</button>
-                        </div>
-                    </div>
-                )}
+                <div className="flex items-center justify-center w-full">
+                <Modal
+                    isOpen={isModalOpen}
+                    onRequestClose={() => setIsModalOpen(false)}
+                    contentLabel="Form Modal"
+                    className="h-[400px] bg-[#eee] border-none mt-32 mx-64"
+                >
+                    <h2 className="py-8">Fill in the details:</h2>
+                    <input type="text" name="user_name" placeholder="Name" value={formData.user_name} onChange={handleInputChange} style={{ marginBottom: '10px', padding: '8px', borderRadius: '5px', border: '1px solid #ddd' }} /><br></br>
+                    <input type="text" name="course" placeholder="Course Name" value={formData.course} onChange={handleInputChange} style={{ marginBottom: '10px', padding: '8px', borderRadius: '5px', border: '1px solid #ddd' }} />
+                    <br />
+                    <br />
+                    <button onClick={handleSubmit} style={{ backgroundColor: '#1976D2', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer', boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)' }}>Submit</button>
+                    <button onClick={() => setIsModalOpen(false)} style={{ marginLeft: '10px' }}>Cancel</button>
+                </Modal>
+                </div>
             </div>
         </div>
     );
