@@ -66,36 +66,24 @@ exports.getCourses = async (req, res) => {
 exports.updateCourse = async (req, res) => {
     try {
         const { user } = req;
-        const { _id, status } = req.body;
+        const { _id } = req.body;
         
-        if (user.user_type === 2) {
-            return failure(
-                res,
-                httpsStatusCodes.ACCESS_DENIED,
-                serverResponseMessage.ACCESS_DENIED
-            );
-        }
-
         const course = await Courses.findOne({ _id });
-        console.log(course.template_Id)
         const template = await Template.findOne({ template_code: course.template_Id });
-        console.log(template)
-        const certificate = template.template_values
-
+        let certificate = template.template_values;
+        certificate = certificate.toString().replace('Joe Nathan', course.user_name);
+        certificate = certificate.toString().replace('joe nathan', course.user_name);
         let data = {
-            status,
             ...req.body
         };
 
-        // Check if status is 1, and include certificate_course only in that case
-        if (status !== undefined && status === '1') {
-            data = {
-                ...data,
-                certificate // Add certificate_course only if status is 1
-            };
+        // Set status based on user match
+        if (user.user_name === course.user_name) {
+            data.status = true;
+            data.certificate = certificate;
         } else {
-            // Remove certificate_course if status is not 1
-            delete data.certificate;
+            data.status = false;
+            data.certificate="";
         }
 
         const updatedCourse = await Courses.findOneAndUpdate(
@@ -120,12 +108,13 @@ exports.updateCourse = async (req, res) => {
         );
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return failure(
             res,
             httpsStatusCodes.INTERNAL_SERVER_ERROR,
             serverResponseMessage.INTERNAL_SERVER_ERROR
         );
     }
-}
+};
+
 

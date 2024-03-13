@@ -8,9 +8,7 @@ const courseSchema = new Schema({
       // required: true,
     },
     status: {
-      type: String,
-      enum: ['0', '1','2'],
-      default:"0"
+      type: Boolean,
     },
     userId: {
         type: Schema.Types.ObjectId,
