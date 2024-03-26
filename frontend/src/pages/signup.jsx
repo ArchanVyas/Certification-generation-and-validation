@@ -73,7 +73,7 @@ const Signup = () => {
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
           className="mt-16 img-fluid " alt="Sample image" />                      </div>
                 <div className="p-8 px-16 mt-[5%] bg-[#000010]">
-                    <h1 className="lg:text-[65px] text-[35px] font-bold text-[white]">Sign up</h1><br />
+                    <h1 className="lg:text-[65px] text-[35px] font-bold text-[white]">User Sign up</h1><br />
                     <form className="max-w-full ">
 
                         <div className="signup-page mb-5 max-w-sm">

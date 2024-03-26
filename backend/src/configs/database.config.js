@@ -11,7 +11,7 @@ const databaseConfig = {
   | DATABASE
   |--------------------------------------------------------------------------
   */
-  url: "mongodb://localhost:27017/certificate",
+  url:"mongodb+srv://archanvyas21:12345@mongodb.r1oetcg.mongodb.net/online_certificate",
 };
 
 module.exports = databaseConfig;
