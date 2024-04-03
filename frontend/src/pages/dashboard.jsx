@@ -131,10 +131,12 @@ const Dashboard = () => {
                 <div className="text-2xl font-semibold mb-12">
                     <h2>Choose a template:</h2>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', maxHeight: '100px'}}>
+                <div style={{ justifyContent: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', maxHeight: '100px'}}
+                className="grid grid-cols-2"
+                >
                     {templates?.map((template, index) => (
                         <div key={index} onClick={() => handleTemplateSelect(template.template_code)} style={{ border: '1px solid #ddd', padding: '10px', cursor: 'pointer', background: selectedTemplate === template ? '#eceff1' : 'none', borderRadius: '5px', marginBottom: '10px', boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)' }} className="min-h-screen">
-                            <div dangerouslySetInnerHTML={{ __html: template.template_values }} />
+                            <div dangerouslySetInnerHTML={{ __html: template.template_values }}/>
                         </div>
                     ))}
                 </div>
