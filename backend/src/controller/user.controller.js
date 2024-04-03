@@ -127,6 +127,7 @@ exports.userLogin = async (req, res) => {
       id: user._id,
       email: user.email,
       // user_type:user.user_type,
+      username:user.user_name,
       token,
     };
     return success(

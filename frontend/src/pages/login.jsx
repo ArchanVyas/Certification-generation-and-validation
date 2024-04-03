@@ -39,9 +39,11 @@ const Login = () => {
             console.log(data);
             if (data.data.token) {
                 console.log('Successfully logged in');
+                console.log(data)
                 localStorage.removeItem("token");
                 localStorage.setItem("token", data.data.token)
                 localStorage.setItem("id", data.data.id)
+                localStorage.setItem("username", data.data.username)
                 window.location.replace('/dashboard')
             }
             else {

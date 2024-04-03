@@ -83,7 +83,7 @@ const UserDashboardTable = () => {
     return (
         <div>
             <Sidebar />
-            <div className="ml-48 p-8">
+            <div className="p-8">
                 <h1 className="text-2xl font-semibold mb-4">Recent Requests</h1>
                 <table className="w-full table-auto">
                     <thead>

@@ -36,8 +36,36 @@ const Dashboard = () => {
         }
     };
 
+    const fetchData = async () => {
+        const id = localStorage.getItem("id");
+        const token = localStorage.getItem("token");
+
+        try {
+            const response = await fetch(`http://localhost:7000/course/getCourse`, {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            const res = await response.json();
+            console.log(res);
+            if (res.status === "Success") {
+                // Filter data where status is 0
+                setData(res?.data);
+            }
+        } catch (error) {
+            console.error("Error fetching templates:", error);
+        }
+    };
+
+    
     useEffect(() => {
         fetchTemplates();
+        fetchData();
+
         const token = localStorage.getItem("token")
         const user = localStorage.getItem("user")
 
@@ -94,22 +122,23 @@ const Dashboard = () => {
             console.error("Error sending data:", error);
         }
     };
-
+    const username = localStorage.getItem("username")
     return (
-        <div style={{ fontFamily: 'Arial, sans-serif'}} className="flex">
+        <div >
             <Navbar />
-            <div className="container mx-auto ml-48 p-8">
-                <div className="text-2xl font-semibold">
+            <div className="container mx-auto p-8 text-center w-[100%]">
+            <h1>Hello, {username}</h1>
+                <div className="text-2xl font-semibold mb-12">
                     <h2>Choose a template:</h2>
                 </div>
-                <div className="max-w-xl" style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', maxHeight: '100px' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', maxHeight: '100px' ,maxWidth:"400px"}}>
                     {templates?.map((template, index) => (
                         <div key={index} onClick={() => handleTemplateSelect(template.template_code)} style={{ border: '1px solid #ddd', padding: '10px', cursor: 'pointer', background: selectedTemplate === template ? '#eceff1' : 'none', borderRadius: '5px', marginBottom: '10px', boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)' }}>
                             <div dangerouslySetInnerHTML={{ __html: template.template_values }} />
                         </div>
                     ))}
                 </div>
-                <div className="flex items-center justify-center w-full">
+                <div className="flex items-center justify-center w-[50%]">
                 <Modal
                     isOpen={isModalOpen}
                     onRequestClose={() => setIsModalOpen(false)}
