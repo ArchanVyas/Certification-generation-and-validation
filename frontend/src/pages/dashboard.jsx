@@ -124,7 +124,7 @@ const Dashboard = () => {
     };
     const username = localStorage.getItem("username")
     return (
-        <div >
+        <div>
             <Navbar />
             <div className="container mx-auto p-8 text-center w-[100%]">
             <h1>Hello, {username}</h1>
@@ -135,7 +135,7 @@ const Dashboard = () => {
                 className="grid grid-cols-2"
                 >
                     {templates?.map((template, index) => (
-                        <div key={index} onClick={() => handleTemplateSelect(template.template_code)} style={{ border: '1px solid #ddd', padding: '10px', cursor: 'pointer', background: selectedTemplate === template ? '#eceff1' : 'none', borderRadius: '5px', marginBottom: '10px', boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)' }} className="min-h-screen">
+                        <div key={index} onClick={() => handleTemplateSelect(template.template_code)} style={{ padding: '10px', cursor: 'pointer', background: selectedTemplate === template ? '#eceff1' : 'none', borderRadius: '5px', marginBottom: '10px'}} className="min-h-screen">
                             <div dangerouslySetInnerHTML={{ __html: template.template_values }}/>
                         </div>
                     ))}

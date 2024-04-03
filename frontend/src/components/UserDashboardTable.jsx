@@ -9,14 +9,22 @@ import { IoIosArrowRoundDown } from "react-icons/io";
 // Style for the modal
 const customStyles = {
     content: {
-        top: "50%",
-        left: "50%",
-        right: "auto",
-        bottom: "auto",
-        marginRight: "-50%",
-        transform: "translate(-50%, -50%)",
-        width: "80%",
-        maxWidth: "500px", // Adjust max width as needed
+        // top: "50%",
+        // left: "50%",
+        // right: "auto",
+        // bottom: "auto",
+        // marginRight: "-50%",
+        // transform: "translate(-50%, -50%)",
+        height:"500px",
+        display:"grid",
+        justifyContent:"center",
+        alignItems:"center",
+        background:"white",
+        padding:"0px 200px",
+        padding:"20px",
+        border:"none"
+        // width: "80%",
+        // maxWidth: "500px", // Adjust max width as needed
     },
 };
 
@@ -122,13 +130,14 @@ const UserDashboardTable = () => {
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal"
+
             >
                 {/* Certificate content */}
                 <div id="certificateContent" dangerouslySetInnerHTML={{ __html: selectedCertificate }}></div>
                 {/* Download PDF button */}
-                <button onClick={downloadCertificateAsPDF} className="px-4 py-2 bg-blue-700 text-white rounded-md my-4 flex items-center"><IoIosArrowRoundDown className="text-2xl"/> Download PDF</button>
+                <button onClick={downloadCertificateAsPDF} className="px-4 py-2 bg-blue-700 text-white rounded-md my-4 flex items-center w-[29%]"><IoIosArrowRoundDown className="text-2xl"/> Download PDF</button>
                 {/* Close modal button */}
-                <button onClick={closeModal} className="absolute top-5 right-4">
+                <button onClick={closeModal} className="top-5 right-4 fixed">
                     <RxCross2 size={24} />
                 </button>
             </Modal>
