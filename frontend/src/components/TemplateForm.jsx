@@ -14,7 +14,7 @@ const TemplateForm = () => {
     const data_Send=JSON.stringify({
       template_values: data,
       template_name: additionalInfo,
-      template_code:123
+      template_code:additionalInfo
     })
     console.log(data_Send)
     try {
