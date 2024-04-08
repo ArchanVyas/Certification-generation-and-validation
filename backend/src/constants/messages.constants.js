@@ -9,6 +9,7 @@ const serverResponseMessage = {
     PROFILE_UPDATED_SUCCESSFULLY:"profile updated successfully",
     COURSE_CREATED_SUCCESSFULLY:"course created sucessfully",
     COURSES_FETCHED_SUCCESSFULLY:"course fetched successfully",
+    COURSE_DETAILS_FETCHED_SUCCESSFULLY:"course details fetched successfully",
     COURSE_NOT_FOUND:"course not found",
     COURSE_UPDATED_SUCCESSFULLY:"course updated successfully",
 
