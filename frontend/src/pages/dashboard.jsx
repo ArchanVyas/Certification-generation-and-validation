@@ -5,7 +5,8 @@ import jsPDF from 'jspdf';
 import Navbar from "../components/Navbar"
 import UserDashboardTable from "../components/UserDashboardTable";
 import Modal from 'react-modal';
-
+import PieChartDash from "../components/PieChartDash";
+import BarChartDash from "../components/BarChartDash";
 const Dashboard = () => {
     const { id } = useParams();
     const [templates, setTemplates] = useState([]);
@@ -54,7 +55,7 @@ const Dashboard = () => {
             console.log(res);
             if (res.status === "Success") {
                 // Filter data where status is 0
-                setData(res?.data);
+                // setData(res?.data);
             }
         } catch (error) {
             console.error("Error fetching templates:", error);
@@ -128,6 +129,10 @@ const Dashboard = () => {
             <Navbar />
             <div className="container mx-auto p-8 text-center w-[100%]">
             <h1>Hello, {username}</h1>
+            <div className="grid grid-cols-2 gap-20 mt-12">
+            <PieChartDash />
+            <BarChartDash />
+            </div>
                 <div className="text-2xl font-semibold mb-12">
                     <h2>Choose a template:</h2>
                 </div>

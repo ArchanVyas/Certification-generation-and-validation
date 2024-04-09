@@ -20,6 +20,7 @@
     "jspdf": "^2.5.1",
     "pdfmake": "^0.2.10",
     "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-modal": "^3.16.1",

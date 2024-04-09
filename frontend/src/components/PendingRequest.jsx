@@ -1,9 +1,46 @@
 import { useState, useEffect } from "react";
 import { IoCheckmark } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
+import {Table} from "antd"
 
 const PendingRequest = () => {
     const [data, setData] = useState([]);
+    const [page, setPage] = useState(1);
+
+    const columns = [
+        {
+            title:"Index",
+            dataIndex:"index",
+            key:"index",
+            render: (text, record, index) => page === 1 ? index + 1 : index + 1 + (page - 1) * 5,
+        },
+        {
+            title:"User",
+            dataIndex:"user_name",
+            key:"user_name",
+        },
+        {
+            title: "Course Name",
+            dataIndex: "course_name",
+            key: "course_name",
+        },
+        {
+            title: "Template ID",
+            dataIndex: "template_Id",
+            key: "template_Id",
+        },
+        {
+            title: "Action",
+            key: "status",
+            render: (text, record) => (
+                <div>
+                   {
+                    record.status?"Accepted":"Rejected"
+                   }
+                </div>
+            ),
+        }
+    ]
 
     const fetchData = async () => {
         const id = localStorage.getItem("id");
@@ -35,30 +72,15 @@ const PendingRequest = () => {
     return (
         <div className="p-8">
             <h1 className="text-2xl font-semibold mb-4">Requests</h1>
-            <table className="w-full table-auto">
-                <thead>
-                    <tr className="bg-gray-200">
-                        <th className="py-2">ID</th>
-                        <th className="py-2">Username</th>
-                        <th className="py-2">Template ID</th>
-                        <th className="py-2">Course Name</th>
-                        <th className="py-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item,index) => (
-                        <tr key={item.id} className="border-b border-gray-200">
-                            <td className="py-3 text-center">{index+1}</td>
-                            <td className="py-3 text-center">{item.user_name}</td>
-                            <td className="py-3 text-center">{item.template_Id}</td>
-                            <td className="py-3 text-center">{item.course_name}</td>
-                            <td className="py-3 text-center">
-                             {item.status?"Accepted":"Rejected"}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="z-[-100]">
+            <Table dataSource={data}  columns={columns}
+            pagination={{pageSize:5}}
+                onChange={(pagination) => {
+                    setPage(pagination.current);
+                }
+                }
+            />
+            </div>
         </div>
     );
 };

@@ -1,8 +1,9 @@
 import AddData from "../components/addData"
 import AdminNavbar from "../components/AdminNavbar"
 import PendingRequest from "../components/PendingRequest"
+import AdminPieChart from "../components/AdminPieChart"
+import AdminBarChart from "../components/AdminBarChart"
 import { useEffect } from "react"
-
 const AdminDashboard = () => {
 
     useEffect(() => {
@@ -20,6 +21,10 @@ const AdminDashboard = () => {
     return (
         <>
             <AdminNavbar />
+            <div className="grid grid-cols-2 gap-20 mt-12">
+            <AdminPieChart />
+            <AdminBarChart />
+            </div>
             <PendingRequest />
         </>
     )

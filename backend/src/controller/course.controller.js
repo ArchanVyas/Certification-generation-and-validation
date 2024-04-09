@@ -198,8 +198,8 @@ exports.getCourseDetailsInPercentage = async (req, res) => {
     const totalPercentage = truePercentage + falsePercentage;
     const data = {
       // totalCount: `${totalPercentage}%`,
-      acceptCount: `${truePercentage}%`,
-      rejectCount: `${falsePercentage}%`,
+      acceptCount: truePercentage,
+      rejectCount: falsePercentage,
     };
     return success(
       res,

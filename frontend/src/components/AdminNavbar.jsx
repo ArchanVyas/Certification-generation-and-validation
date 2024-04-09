@@ -34,7 +34,7 @@ const AdminNavbar = () => {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"></link>
 
 
-        <nav className="bg-white border-gray-200 dark:bg-gray-900">
+        <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-full top-0">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="/dashboard" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CGV</span>
@@ -69,7 +69,7 @@ const AdminNavbar = () => {
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav><br></br><br></br><br></br>
 
     </>)
 }
