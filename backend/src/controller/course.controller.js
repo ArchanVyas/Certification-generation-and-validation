@@ -137,13 +137,27 @@ exports.updateCourse = async (req, res) => {
 
 exports.getCourseDetailsInNumber = async (req, res) => {
   try {
-    const totalCount = await Courses.countDocuments();
-    const trueCount = await Courses.countDocuments({ status: true });
-    const falseCount = await Courses.countDocuments({ status: false });
+    const { user } = req;
+    let totalCount, trueCount, falseCount;
+    if (user.user_type === 1) {
+      totalCount = await Courses.countDocuments();
+      trueCount = await Courses.countDocuments({ status: true });
+      falseCount = await Courses.countDocuments({ status: false });
+    } else {
+      totalCount = await Courses.countDocuments({ userId: user.id });
+      trueCount = await Courses.countDocuments({
+        status: true,
+        userId: user.id,
+      });
+      falseCount = await Courses.countDocuments({
+        status: false,
+        userId: user.id,
+      });
+    }
     const data = {
       totalCount,
-      acceptCount:trueCount,
-      rejectCount:falseCount,
+      acceptCount: trueCount,
+      rejectCount: falseCount,
     };
     return success(
       res,
@@ -162,14 +176,30 @@ exports.getCourseDetailsInNumber = async (req, res) => {
 
 exports.getCourseDetailsInPercentage = async (req, res) => {
   try {
-    const totalCount = await Courses.countDocuments();
-    const trueCount = await Courses.countDocuments({ status: true });
-    const falseCount = await Courses.countDocuments({ status: false });
-    const truePercentage = (trueCount / totalCount) * 100;
-    const falsePercentage = (falseCount / totalCount) * 100;
+    const { user } = req;
+    let totalCount, trueCount, falseCount;
+    if (user.user_type === 1) {
+      totalCount = await Courses.countDocuments();
+      trueCount = await Courses.countDocuments({ status: true });
+      falseCount = await Courses.countDocuments({ status: false });
+    } else {
+      totalCount = await Courses.countDocuments({ userId: user.id });
+      trueCount = await Courses.countDocuments({
+        status: true,
+        userId: user.id,
+      });
+      falseCount = await Courses.countDocuments({
+        status: false,
+        userId: user.id,
+      });
+    }
+    const truePercentage = Math.round((trueCount / totalCount) * 100);
+    const falsePercentage = Math.round((falseCount / totalCount) * 100);
+    const totalPercentage = truePercentage + falsePercentage;
     const data = {
-        acceptPercentage: `${truePercentage.toFixed(2)}%`,
-        rejectPercentage: `${falsePercentage.toFixed(2)}%`,
+      // totalCount: `${totalPercentage}%`,
+      acceptCount: `${truePercentage}%`,
+      rejectCount: `${falsePercentage}%`,
     };
     return success(
       res,

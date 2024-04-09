@@ -6,8 +6,8 @@ const isAuthenticated = require('../middleware/authentication.middelware')
 
 module.exports = () => {
   router.get('/getCourse',isAuthenticated,getCourses)
-  router.get('/getCourseDetails/number', getCourseDetailsInNumber)
-  router.get('/getCourseDetails/percentage' , getCourseDetailsInPercentage)
+  router.get('/getCourseDetails/number', isAuthenticated, getCourseDetailsInNumber)
+  router.get('/getCourseDetails/percentage', isAuthenticated , getCourseDetailsInPercentage)
   router.post("/createCourse",isAuthenticated, createCourse);
   router.post("/updateCourse",isAuthenticated,updateCourse);
   return router;
