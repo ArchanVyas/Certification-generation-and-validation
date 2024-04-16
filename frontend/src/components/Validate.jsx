@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Axios from 'axios';
 import AdminNavbar from "./AdminNavbar";
 
@@ -13,11 +13,33 @@ const Validate = () => {
 		}
 	};
 
+	useEffect(() => {
+		const executeValidationScript = () => {
+			const { exec } = require('child_process');
+			exec('python ../../Validation_Script.py', (error, stdout) => {
+				if (error) {
+					console.error(`Error executing validation script: ${error}`);
+				} else {
+					console.log(`Validation script output: ${stdout}`);
+				}
+			});
+		};
+
+		const button = document.querySelector('button');
+		button.addEventListener('click', executeValidationScript);
+
+		return () => {
+			button.removeEventListener('click', executeValidationScript);
+		};
+	}, []);
+
 	return (
 		<div>
 			<AdminNavbar />
 			<h1 className="text-center px-32">VALIDATE CERTIFICATES</h1>
-			<button onClick={handleValidate}>Validate Certificate</button>
+			<button onClick={handleValidate} className="text-center px-32 items-center bg-blue-600 px-4 py-2 rounded-md text-white">
+				Validate Certificate
+			</button>
 		</div>
 	);
 };
