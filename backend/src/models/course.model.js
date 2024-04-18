@@ -23,6 +23,10 @@ const courseSchema = new Schema({
     certificate:{
       type:String,
       default:""
+    },
+    uniqueId:{
+      type:String,
+      default:""
     }
   });
 

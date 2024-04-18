@@ -21,6 +21,7 @@ const AdminDashboard = () => {
     return (
         <>
             <AdminNavbar />
+                <p className="text-2xl font-semibold mb-4 p-8"> ANALYSIS </p>
             <div className="grid grid-cols-2 gap-20 mt-12">
             <AdminPieChart />
             <AdminBarChart />
