@@ -70,7 +70,8 @@ const AdminLogin = () => {
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                         className="mt-16 img-fluid" alt="Sample image" />                    </div>
                 <div className="p-8 px-16 mt-[5%] bg-[#000010]">      
-                    <h1 className="lg:text-[65px] text-[35px] font-bold text-[white]">Admin Login</h1><br />
+                <p className='lg:text-[30px] text-[35px] font-bold text-[white]'>Certificate generation and validation</p>
+                    <h1 className="text-[25px] font-semibold my-6 text-[white]">Admin Login</h1><br />
                     {/* <h3 className="lg:text-[35px] text-[20px] text-[white] font-semibold">Login</h3><br></br> */}
                     <form className="max-w-sm">
                         <div className="mb-5">

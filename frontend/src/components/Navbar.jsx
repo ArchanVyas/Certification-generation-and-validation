@@ -58,8 +58,6 @@ const Sidebar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [active,setActive] = useState("Home");
     console.log(currentPath)
-   
-
     const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
     };
@@ -69,6 +67,9 @@ const Sidebar = () => {
         }
         else if(currentPath === "/request"){
             setActive("Request")
+        }
+        else if(currentPath === "/search-certificate"){
+            setActive("Search")
         }
         else if(currentPath === "/profile" || currentPath === "/edit-profile"){
             setActive("Profile")
@@ -102,6 +103,9 @@ const Sidebar = () => {
                         </li>                      
                         <li>
                             <a href="/request" className={`inline-block block text-sm py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent ${active === 'Request' ? "text-blue-500":"text-white"}`}>Request</a>
+                        </li>
+                        <li>
+                            <a href="/search-certificate" className={`inline-block block text-sm py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent ${active === 'Search' ? "text-blue-500":"text-white"}`}>Search Certificate</a>
                         </li>
                         <li>
                             <a href="/profile" className={`inline-block block text-sm py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent ${active === 'Profile' ? "text-blue-500":"text-white"}`}>Profile</a>

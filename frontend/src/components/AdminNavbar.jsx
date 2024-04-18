@@ -24,9 +24,9 @@ const AdminNavbar = () => {
     },[currentPath])
     const logout = () => {
         localStorage.removeItem("token");
-        localStorage.removeItem("id");
+        localStorage.removeItem("id");        
         localStorage.clear()
-        window.location.reload()
+        window.location.replace('/admin/login')
     }
 
     return(

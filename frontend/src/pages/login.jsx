@@ -76,8 +76,9 @@ const Login = () => {
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                         className="mt-16 img-fluid" alt="Sample image" />                    </div>
                 <div className="p-8 px-16 mt-[5%] bg-[#000010]">      
-                    <h1 className="lg:text-[65px] text-[35px] font-bold text-[white]">User Login</h1><br />
-                    {/* <h3 className="lg:text-[35px] text-[20px] text-[white] font-semibold">Login</h3><br></br> */}
+                <p className='lg:text-[30px] text-[35px] font-bold text-[white]'>Certificate generation and validation</p>
+                    <h1 className="text-[25px] font-semibold my-6 text-[white]">User Login</h1><br />
+                                        {/* <h3 className="lg:text-[35px] text-[20px] text-[white] font-semibold">Login</h3><br></br> */}
                     <form className="max-w-sm">
                         <div className="mb-5">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
@@ -101,6 +102,7 @@ const Login = () => {
                         <br></br>                        
                         <h1 className='text-[white]'>New user? <Link to="/signup" className="font-bold underline">Signup</Link></h1>
                         <h1 className='text-[white]'>Admin? <Link to="/admin/login" className="font-bold underline">Login</Link></h1>
+                        <h1 className='text-[white]'>Find Certificate? <Link to="/search-certificate" className="font-bold underline">Click here</Link></h1>
                     </form>
                 </div>
             </div>
