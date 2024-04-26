@@ -8,7 +8,7 @@ const Profile = () => {
     const id = localStorage.getItem("id");
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch(`http://localhost:7000/user/get-profile/`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URI}/user/get-profile/`, {
         method: "GET",
         headers: {
           Accept: "application/json",

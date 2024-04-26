@@ -3,7 +3,7 @@ const MyCerti = () => {
     const [templates, setTemplates] = useState([]);
     const fetchTemplates = async () => {
         try {
-            const response = await fetch("http://localhost:7000/template/get-template");
+            const response = await fetch(`${process.env.REACT_APP_BASE_URI}/template/get-template`);
             const data = await response.json();
             setTemplates(data?.data);
         } catch (error) {

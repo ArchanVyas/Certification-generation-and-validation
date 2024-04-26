@@ -38,7 +38,7 @@ const AdminSignup = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:7000/user/signUp/admin', {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URI}/user/signUp/admin`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

@@ -21,7 +21,7 @@ const Dashboard = () => {
     const fetchTemplates = async () => {
         try {
             const token = localStorage.getItem("token")
-            const response = await fetch("http://localhost:7000/template/get-template", {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URI}/template/get-template`, {
                 method: "GET",
                 headers: {
                   Accept: "application/json",
@@ -42,7 +42,7 @@ const Dashboard = () => {
         const token = localStorage.getItem("token");
 
         try {
-            const response = await fetch(`http://localhost:7000/course/getCourse`, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URI}/course/getCourse`, {
                 method: "GET",
                 headers: {
                     Accept: "application/json",
@@ -97,7 +97,7 @@ const Dashboard = () => {
         // Send the data and template ID to the backend for processing
         console.log({"user_name":formData.user_name,"course":formData.course,"template_id":selectedTemplate})
         const token = localStorage.getItem("token");
-        const API_URL = `http://localhost:7000/course/createCourse`;
+        const API_URL = `${process.env.REACT_APP_BASE_URI}/course/createCourse`;
         try {
             const response = await fetch(API_URL, {
                 method: "POST",

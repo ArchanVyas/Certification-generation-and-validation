@@ -43,7 +43,7 @@ const Signup = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:7000/user/signUp/user', {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URI}/user/signUp/user`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

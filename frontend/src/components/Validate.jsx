@@ -50,7 +50,7 @@ const Validate = () => {
     // Function to fetch course data
     const fetchCourseData = async () => {
       try {
-        const response = await fetch("http://localhost:7000/course/validateCourse");
+        const response = await fetch(`${process.env.REACT_APP_BASE_URI}/course/validateCourse`);
         const data = await response.json();
         // Set the fetched data to the state
         console.log(data)

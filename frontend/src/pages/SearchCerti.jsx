@@ -11,7 +11,7 @@ const SearchCerti = () => {
         setSearch(e.target.value);
     }
     const handleSearch = async () => {
-        const response = await axios.post('http://localhost:7000/course/searchCertificate', {
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URI}/course/searchCertificate`, {
             uniqueId: search
         });
         console.log(response);

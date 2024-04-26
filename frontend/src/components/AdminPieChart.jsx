@@ -8,7 +8,7 @@ const AdminPieChart = () => {
     const fetchData = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.get('http://localhost:7000/course/getCourseDetails/percentage', {
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URI}/course/getCourseDetails/percentage`, {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',

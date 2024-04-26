@@ -8,7 +8,7 @@ const TemplateForm = () => {
     e.preventDefault();
     const token = localStorage.getItem("token")
     // Assuming your API endpoint is 'https://example.com/api'
-    const apiUrl = 'http://localhost:7000/template/create-template';
+    const apiUrl = `${process.env.REACT_APP_BASE_URI}/template/create-template`;
     console.log(data)
     console.log(additionalInfo)
     const data_Send=JSON.stringify({

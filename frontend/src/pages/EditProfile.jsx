@@ -23,7 +23,7 @@ const EditProfile = () => {
     const id = localStorage.getItem("id");
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch(`http://localhost:7000/user/get-profile/`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URI}/user/get-profile/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -88,7 +88,7 @@ const EditProfile = () => {
       console.log(formData)
       try {
         const token = localStorage.getItem("token")
-        const response = await fetch('http://localhost:7000/user/update-profile', {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URI}/user/update-profile`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
