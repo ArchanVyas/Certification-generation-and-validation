@@ -1,4 +1,5 @@
 "use strict";
+require("dotenv").config()
 const databaseConfig = {
   /*
   |--------------------------------------------------------------------------
@@ -11,7 +12,7 @@ const databaseConfig = {
   | DATABASE
   |--------------------------------------------------------------------------
   */
-  url:"mongodb+srv://archanvyas21:12345@mongodb.r1oetcg.mongodb.net/online_certificate",
+  url:process.env.MONGO_URI,
 };
 
 module.exports = databaseConfig;
